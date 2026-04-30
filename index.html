@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baranimoorthy | Data Science Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E53935;
+      --red-dark: #b71c1c;
+      --red-glow: rgba(229, 57, 53, 0.15);
+      --bg: #0d0d0d;
+      --bg2: #141414;
+      --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(229,57,53,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--red-glow);
+      border: 1px solid rgba(229,57,53,0.3);
+      color: var(--red);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+    .hero h1 span { color: var(--red); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+
+    .scroll-hint {
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 48px;
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .about-text { font-size: 1.05rem; color: #bbb; line-height: 1.8; }
+    .about-text p + p { margin-top: 16px; }
+    .about-info { display: flex; flex-direction: column; gap: 16px; }
+    .info-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .info-item .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .info-item .value { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+    .skill-chip {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .skill-chip:hover {
+      border-color: var(--red);
+      background: var(--red-glow);
+      color: var(--red);
+      transform: translateY(-3px);
+    }
+    .skill-icon { font-size: 1.4rem; margin-bottom: 6px; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg2); }
+    .projects-grid { display: flex; flex-direction: column; gap: 28px; }
+    .project-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--red);
+      border-radius: 4px 0 0 4px;
+    }
+    .project-card:hover {
+      border-color: rgba(229,57,53,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(229,57,53,0.08);
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .project-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-glow);
+      border: 1px solid rgba(229,57,53,0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .project-links { display: flex; gap: 10px; }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .project-link:hover { color: var(--red); border-color: var(--red); }
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .project-desc {
+      font-size: 0.95rem;
+      color: #999;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(229,57,53,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .contact-card h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+    .contact-card p { color: var(--muted); margin-bottom: 32px; font-size: 1rem; }
+    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-card { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">BARANI.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Open to Internships &amp; Opportunities</div>
+    <h1>Hi, I'm <span>Baranimoorthy</span></h1>
+    <p>Data Science student building real-world AI &amp; mobile applications that solve actual problems.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="scroll-hint">↓ scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Who I Am</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a BSc. Data Science student at Sathyabama Institute of Science and Technology, passionate about building intelligent systems that combine machine learning with real-world applications.</p>
+          <p>I enjoy working across the full stack — from training ML models and serving them via REST APIs to building polished mobile apps that real users can interact with. I believe in shipping things that actually work.</p>
+          <p>My recent project AcademyFlow is a production-deployed AI mobile app that predicts student exam performance using machine learning — built entirely from scratch, from model training to mobile UI.</p>
+        </div>
+        <div class="about-info">
+          <div class="info-item">
+            <div class="label">University</div>
+            <div class="value">Sathyabama Institute of Science and Technology</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Degree</div>
+            <div class="value">BSc. Data Science</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Location</div>
+            <div class="value">Chennai, India</div>
+          </div>
+          <div class="info-item">
+            <div class="label">Email</div>
+            <div class="value">baranimoorthy77@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Tech Stack</p>
+      <h2 class="section-title">Skills &amp; Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-chip"><div class="skill-icon">🐍</div>Python</div>
+        <div class="skill-chip"><div class="skill-icon">🤖</div>Machine Learning</div>
+        <div class="skill-chip"><div class="skill-icon">📊</div>Data Science</div>
+        <div class="skill-chip"><div class="skill-icon">⚡</div>FastAPI</div>
+        <div class="skill-chip"><div class="skill-icon">📱</div>Flutter</div>
+        <div class="skill-chip"><div class="skill-icon">🎯</div>Dart</div>
+        <div class="skill-chip"><div class="skill-icon">🧠</div>Scikit-learn</div>
+        <div class="skill-chip"><div class="skill-icon">🌊</div>Streamlit</div>
+        <div class="skill-chip"><div class="skill-icon">🗄️</div>Supabase</div>
+        <div class="skill-chip"><div class="skill-icon">🐘</div>PostgreSQL</div>
+        <div class="skill-chip"><div class="skill-icon">🔗</div>REST API</div>
+        <div class="skill-chip"><div class="skill-icon">☁️</div>Cloud Deploy</div>
+        <div class="skill-chip"><div class="skill-icon">🔐</div>JWT Auth</div>
+        <div class="skill-chip"><div class="skill-icon">🐙</div>Git &amp; GitHub</div>
+        <div class="skill-chip"><div class="skill-icon">📦</div>Android Dev</div>
+        <div class="skill-chip"><div class="skill-icon">🔬</div>Pandas &amp; NumPy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">What I've Built</h2>
+      <div class="projects-grid">
+
+        <!-- Project 1: AcademyFlow Mobile -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag">Featured Project</span>
+            <div class="project-links">
+              <a href="https://academyflow-mobile-app.onrender.com" target="_blank" class="project-link">🌐 Live API</a>
+              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">⭐ GitHub</a>
+            </div>
+          </div>
+          <h3 class="project-title">AcademyFlow — AI Student Performance App</h3>
+          <p class="project-desc">
+            A full-stack AI-powered mobile application that predicts student exam scores using machine learning. Students input their study habits and the app returns a predicted score, personalized insights, weekly study roadmap, goal gap analysis, peer comparison, and subject priority recommendations. Built with Flutter for Android, backed by a FastAPI REST API serving a trained ML model deployed on Render cloud with JWT authentication and Supabase PostgreSQL for user data persistence.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">Flutter</span>
+            <span class="stack-tag">Dart</span>
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">Scikit-learn</span>
+            <span class="stack-tag">Supabase</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">JWT Auth</span>
+            <span class="stack-tag">Render</span>
+            <span class="stack-tag">REST API</span>
+          </div>
+        </div>
+
+        <!-- Project 2: AcademyFlow Streamlit -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag">ML Web App</span>
+            <div class="project-links">
+              <a href="https://academyflow.streamlit.app/" target="_blank" class="project-link">🚀 Live Demo</a>
+              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">⭐ GitHub</a>
+            </div>
+          </div>
+          <h3 class="project-title">AcademyFlow — Student Performance Predictor (ML Web App)</h3>
+          <p class="project-desc">
+            A machine learning web application built with Streamlit that predicts student exam performance based on study habits and lifestyle factors. The model was trained on a real student performance dataset using ensemble learning techniques including Random Forest and Gradient Boosting. Features include real-time score prediction, grade classification, and interactive data visualizations — deployed live on Streamlit Cloud.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Streamlit</span>
+            <span class="stack-tag">Scikit-learn</span>
+            <span class="stack-tag">Pandas</span>
+            <span class="stack-tag">NumPy</span>
+            <span class="stack-tag">Machine Learning</span>
+            <span class="stack-tag">Data Visualization</span>
+            <span class="stack-tag">Streamlit Cloud</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="contact-card">
+        <h2>Open to Opportunities 🚀</h2>
+        <p>I'm currently looking for internships and entry-level opportunities in Data Science, ML Engineering, and Mobile Development.</p>
+        <div class="contact-links">
+          <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-primary">✉️ Email Me</a>
+          <a href="https://www.linkedin.com/in/baranimoorthy77" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
+          <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; Built by Baranimoorthy &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
