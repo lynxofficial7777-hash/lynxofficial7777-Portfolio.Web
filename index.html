@@ -153,95 +153,91 @@
     .meta-sep { color: var(--ink-line); }
 
     /* ── SECTIONS ── */
-    <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-status mono">
-        <span class="status-dot"></span>
-        status: open to work
-      </p>
-      <h1 class="hero-name">Barani M.</h1>
-      <p class="hero-role">Data scientist who ships the whole stack —<br>model, API, app, and the deploy that keeps it running.</p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">View the work</a>
-        <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">Get in touch</a>
-      </div>
-    </div>
-    <div class="hero-meta mono">
-      <span>Chennai, India</span>
-      <span class="meta-sep">/</span>
-      <span>B.Sc. Data Science, 2026</span>
-    </div>
-  </section>
+    section { padding: 120px clamp(24px, 8vw, 100px); }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--signal);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 52px;
+      line-height: 1.2;
+    }
 
     /* ── ABOUT ── */
-    #about { background: var(--bg2); }
+    #about { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 72px;
       align-items: start;
     }
-    .about-text { font-size: 1.05rem; color: #bbb; line-height: 1.8; }
+    .about-text { font-size: 1.05rem; color: var(--paper-dim); line-height: 1.8; }
     .about-text p + p { margin-top: 16px; }
-    .about-info { display: flex; flex-direction: column; gap: 16px; }
-    .info-item {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
+    .about-text strong { color: var(--paper); font-weight: 600; }
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--ink-line);
     }
-    .info-item .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .info-item .value { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--ink-line);
+    }
+    .info-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--paper-faint);
+      letter-spacing: 0.02em;
+    }
+    .info-item .value { font-size: 0.92rem; font-weight: 500; color: var(--paper); text-align: right; }
 
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 14px;
+      gap: 1px;
+      background: var(--ink-line);
+      border: 1px solid var(--ink-line);
     }
     .skill-chip {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: var(--ink-raised);
       padding: 14px 16px;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--paper-dim);
+      transition: all 0.15s;
     }
     .skill-chip:hover {
-      border-color: var(--red);
-      background: var(--red-glow);
-      color: var(--red);
-      transform: translateY(-3px);
+      background: var(--ink);
+      color: var(--paper);
     }
-    .skill-icon { font-size: 1.4rem; margin-bottom: 6px; }
 
     /* ── PROJECTS ── */
-    #projects { background: var(--bg2); }
-    .projects-grid { display: flex; flex-direction: column; gap: 28px; }
+    #projects { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
+    .projects-grid { display: flex; flex-direction: column; gap: 24px; }
     .project-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      background: var(--ink);
+      border: 1px solid var(--ink-line);
+      border-radius: 6px;
       padding: 36px;
-      transition: all 0.25s;
+      transition: border-color 0.2s;
       position: relative;
       overflow: hidden;
     }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--red);
-      border-radius: 4px 0 0 4px;
-    }
     .project-card:hover {
-      border-color: rgba(229,57,53,0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(229,57,53,0.08);
+      border-color: var(--paper-faint);
     }
     .project-header {
       display: flex;
@@ -252,15 +248,12 @@
       gap: 12px;
     }
     .project-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--red);
-      background: var(--red-glow);
-      border: 1px solid rgba(229,57,53,0.2);
-      padding: 4px 12px;
-      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--signal);
+      padding: 4px 0;
     }
     .project-links { display: flex; gap: 10px; }
     .project-link {
@@ -268,68 +261,60 @@
       align-items: center;
       gap: 6px;
       font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--muted);
+      font-weight: 500;
+      color: var(--paper-dim);
       text-decoration: none;
       padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      border: 1px solid var(--ink-line);
+      border-radius: 3px;
       transition: all 0.2s;
     }
-    .project-link:hover { color: var(--red); border-color: var(--red); }
+    .project-link:hover { color: var(--paper); border-color: var(--paper-faint); }
     .project-title {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 12px;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.02em;
     }
     .project-desc {
       font-size: 0.95rem;
-      color: #999;
+      color: var(--paper-dim);
       line-height: 1.75;
       margin-bottom: 20px;
     }
     .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
     .stack-tag {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--muted);
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--paper-faint);
+      background: transparent;
+      border: 1px solid var(--ink-line);
+      padding: 4px 10px;
+      border-radius: 3px;
     }
 
     /* ── CONTACT ── */
     .contact-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background: var(--ink-raised);
+      border: 1px solid var(--ink-line);
+      border-radius: 6px;
       padding: 60px 48px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .contact-card::before {
-      content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(229,57,53,0.08) 0%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-    .contact-card h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
-    .contact-card p { color: var(--muted); margin-bottom: 32px; font-size: 1rem; }
+    .contact-card h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .contact-card p { color: var(--paper-dim); margin-bottom: 32px; font-size: 1rem; max-width: 520px; margin-left: auto; margin-right: auto; }
     .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
     /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 28px;
-      color: var(--muted);
+      color: var(--paper-faint);
       font-size: 0.82rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--ink-line);
     }
 
     /* ── RESPONSIVE ── */
@@ -356,14 +341,23 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">Open to Internships &amp; Opportunities</div>
-    <h1>Hi, I'm <span>BARANI.M</span></h1>
-    <p>Data Science graduate who builds things end-to-end — from data pipelines and ML models &amp; to production APIs and mobile applications that people actually use.</p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">Get In Touch</a>
+    <div class="hero-inner">
+      <p class="hero-status mono">
+        <span class="status-dot"></span>
+        status: open to work
+      </p>
+      <h1 class="hero-name">Barani M.</h1>
+      <p class="hero-role">Data scientist who ships the whole stack —<br>model, API, app, and the deploy that keeps it running.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View the work</a>
+        <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">Get in touch</a>
+      </div>
     </div>
-    <div class="scroll-hint">↓ scroll</div>
+    <div class="hero-meta mono">
+      <span>Chennai, India</span>
+      <span class="meta-sep">/</span>
+      <span>B.Sc. Data Science, 2026</span>
+    </div>
   </section>
 
   <!-- ABOUT -->
@@ -374,26 +368,26 @@
       <div class="about-grid">
         <div class="about-text">
           <p>I'm a B.Sc. Data Science graduate from Sathyabama Institute of Science and Technology who builds things end-to-end — from training ML models to shipping them inside real applications that people actually use.</p>
-          <p>I've built <strong style="color:#f0f0f0">full-stack AI applications</strong> using Python, FastAPI, Flutter, and Kotlin — connecting trained ML models to mobile frontends with REST APIs, JWT auth, and cloud databases. I know both sides: the data science that produces the model and the engineering that puts it in users' hands.</p>
-          <p>I've worked with <strong style="color:#f0f0f0">on-device AI inference</strong> using MediaPipe (real-time pose detection at ~30fps) and <strong style="color:#f0f0f0">cloud ML deployment</strong> via Render and Streamlit Cloud. I've built live multiplayer systems using Firebase Realtime Database and Cloud Functions, handled CameraX + MediaPipe pipeline bugs at the byte level, diagnosed 12 production bugs on a live Android app, and built production RAG pipelines using LangChain, FAISS, and the Anthropic Claude API.</p>
+          <p>I've built <strong>full-stack AI applications</strong> using Python, FastAPI, Flutter, and Kotlin — connecting trained ML models to mobile frontends with REST APIs, JWT auth, and cloud databases. I know both sides: the data science that produces the model and the engineering that puts it in users' hands.</p>
+          <p>I've worked with <strong>on-device AI inference</strong> using MediaPipe (real-time pose detection at ~30fps) and <strong>cloud ML deployment</strong> via Render and Streamlit Cloud. I've built live multiplayer systems using Firebase Realtime Database and Cloud Functions, handled CameraX + MediaPipe pipeline bugs at the byte level, diagnosed 12 production bugs on a live Android app, and built production RAG pipelines using LangChain, FAISS, and the Anthropic Claude API.</p>
           <p>My projects include: an AI fitness battle app with real-time pose tracking (Active Spark Gen 7), a full-stack student performance predictor with ML model + REST API + mobile app (AcademyFlow), an AI code review agent using RAG pipelines and Claude API (CodeSense), and interactive ML dashboards deployed on the cloud.</p>
-          <p><strong style="color:#f0f0f0">I don't build things for portfolios. I build things for production.</strong></p>
+          <p><strong>I don't build things for portfolios. I build things for production.</strong></p>
         </div>
         <div class="about-info">
           <div class="info-item">
-            <div class="label">University</div>
+            <div class="label">university</div>
             <div class="value">Sathyabama Institute of Science and Technology</div>
           </div>
           <div class="info-item">
-            <div class="label">Degree</div>
-            <div class="value">Bsc. Data Science</div>
+            <div class="label">degree</div>
+            <div class="value">B.Sc. Data Science</div>
           </div>
           <div class="info-item">
-            <div class="label">Location</div>
+            <div class="label">location</div>
             <div class="value">Chennai, India</div>
           </div>
           <div class="info-item">
-            <div class="label">Email</div>
+            <div class="label">email</div>
             <div class="value">baranimoorthy77@gmail.com</div>
           </div>
         </div>
@@ -407,60 +401,56 @@
       <p class="section-label">Tech Stack</p>
       <h2 class="section-title">Skills &amp; Technologies</h2>
 
-      <!-- Category: AI / ML -->
-      <p style="font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:14px;">🧠 AI &amp; Machine Learning</p>
-      <div class="skills-grid" style="margin-bottom:36px;">
-        <div class="skill-chip"><div class="skill-icon">🐍</div>Python</div>
-        <div class="skill-chip"><div class="skill-icon">🤖</div>Machine Learning</div>
-        <div class="skill-chip"><div class="skill-icon">🧪</div>Scikit-learn</div>
-        <div class="skill-chip"><div class="skill-icon">🌲</div>Random Forest</div>
-        <div class="skill-chip"><div class="skill-icon">📈</div>Gradient Boosting</div>
-        <div class="skill-chip"><div class="skill-icon">🦴</div>MediaPipe AI</div>
-        <div class="skill-chip"><div class="skill-icon">🔢</div>Pandas &amp; NumPy</div>
-        <div class="skill-chip"><div class="skill-icon">📊</div>Data Analysis</div>
-        <div class="skill-chip"><div class="skill-icon">📉</div>Model Evaluation</div>
-        <div class="skill-chip"><div class="skill-icon">🔬</div>Feature Engineering</div>
+      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">ai &amp; machine learning</p>
+      <div class="skills-grid" style="margin-bottom:32px;">
+        <div class="skill-chip">Python</div>
+        <div class="skill-chip">Machine Learning</div>
+        <div class="skill-chip">Scikit-learn</div>
+        <div class="skill-chip">Random Forest</div>
+        <div class="skill-chip">Gradient Boosting</div>
+        <div class="skill-chip">MediaPipe AI</div>
+        <div class="skill-chip">Pandas &amp; NumPy</div>
+        <div class="skill-chip">Data Analysis</div>
+        <div class="skill-chip">Model Evaluation</div>
+        <div class="skill-chip">Feature Engineering</div>
       </div>
 
-      <!-- Category: Mobile -->
-      <p style="font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:14px;">📱 Mobile Development</p>
-      <div class="skills-grid" style="margin-bottom:36px;">
-        <div class="skill-chip"><div class="skill-icon">📱</div>Android / Kotlin</div>
-        <div class="skill-chip"><div class="skill-icon">🎨</div>Jetpack Compose</div>
-        <div class="skill-chip"><div class="skill-icon">📐</div>MVVM Architecture</div>
-        <div class="skill-chip"><div class="skill-icon">💉</div>Hilt / DI</div>
-        <div class="skill-chip"><div class="skill-icon">🎯</div>Flutter / Dart</div>
-        <div class="skill-chip"><div class="skill-icon">📷</div>CameraX</div>
-        <div class="skill-chip"><div class="skill-icon">🔔</div>FCM Push Notifications</div>
-        <div class="skill-chip"><div class="skill-icon">🎞️</div>Lottie Animations</div>
+      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">mobile development</p>
+      <div class="skills-grid" style="margin-bottom:32px;">
+        <div class="skill-chip">Android / Kotlin</div>
+        <div class="skill-chip">Jetpack Compose</div>
+        <div class="skill-chip">MVVM Architecture</div>
+        <div class="skill-chip">Hilt / DI</div>
+        <div class="skill-chip">Flutter / Dart</div>
+        <div class="skill-chip">CameraX</div>
+        <div class="skill-chip">FCM Push Notifications</div>
+        <div class="skill-chip">Lottie Animations</div>
       </div>
 
-      <!-- Category: Backend & Full-Stack -->
-      <p style="font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:14px;">⚙️ Backend &amp; Full-Stack</p>
-      <div class="skills-grid" style="margin-bottom:36px;">
-        <div class="skill-chip"><div class="skill-icon">⚡</div>FastAPI</div>
-        <div class="skill-chip"><div class="skill-icon">🔗</div>REST API Design</div>
-        <div class="skill-chip"><div class="skill-icon">🔐</div>JWT Auth</div>
-        <div class="skill-chip"><div class="skill-icon">🌊</div>Streamlit</div>
-        <div class="skill-chip"><div class="skill-icon">🐘</div>PostgreSQL</div>
-        <div class="skill-chip"><div class="skill-icon">🗄️</div>Supabase</div>
-        <div class="skill-chip"><div class="skill-icon">🔥</div>Firebase RTDB</div>
-        <div class="skill-chip"><div class="skill-icon">☁️</div>Cloud Functions</div>
-        <div class="skill-chip"><div class="skill-icon">📡</div>Real-Time Sync</div>
-        <div class="skill-chip"><div class="skill-icon">🛡️</div>API Security</div>
+      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">backend &amp; full-stack</p>
+      <div class="skills-grid" style="margin-bottom:32px;">
+        <div class="skill-chip">FastAPI</div>
+        <div class="skill-chip">REST API Design</div>
+        <div class="skill-chip">JWT Auth</div>
+        <div class="skill-chip">Streamlit</div>
+        <div class="skill-chip">PostgreSQL</div>
+        <div class="skill-chip">Supabase</div>
+        <div class="skill-chip">Firebase RTDB</div>
+        <div class="skill-chip">Cloud Functions</div>
+        <div class="skill-chip">Real-Time Sync</div>
+        <div class="skill-chip">API Security</div>
       </div>
 
-      <!-- Category: DevOps & Tools -->
-      <p style="font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:14px;">🛠️ DevOps &amp; Tools</p>
+      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">devops &amp; tools</p>
       <div class="skills-grid">
-        <div class="skill-chip"><div class="skill-icon">🐙</div>Git &amp; GitHub</div>
-        <div class="skill-chip"><div class="skill-icon">🚀</div>Firebase Distribution</div>
-        <div class="skill-chip"><div class="skill-icon">🌐</div>Render Cloud Deploy</div>
-        <div class="skill-chip"><div class="skill-icon">📦</div>Gradle / Build Systems</div>
-        <div class="skill-chip"><div class="skill-icon">🧱</div>Android Studio</div>
-        <div class="skill-chip"><div class="skill-icon">🔍</div>Debugging &amp; Profiling</div>
-        <div class="skill-chip"><div class="skill-icon">📋</div>Agile / Self-managed</div>
-        <div class="skill-chip"><div class="skill-icon">🔄</div>CI / CD Basics</div>
+        <div class="skill-chip">Git &amp; GitHub</div>
+        <div class="skill-chip">Firebase Distribution</div>
+        <div class="skill-chip">Render Cloud Deploy</div>
+        <div class="skill-chip">Gradle / Build Systems</div>
+        <div class="skill-chip">Android Studio</div>
+        <div class="skill-chip">Debugging &amp; Profiling</div>
+        <div class="skill-chip">Agile / Self-managed</div>
+        <div class="skill-chip">CI / CD Basics</div>
       </div>
     </div>
   </section>
@@ -472,57 +462,37 @@
       <h2 class="section-title">What I've Built</h2>
       <div class="projects-grid">
 
-        <!-- Project -1: ShopEase AI Refund Agent -->
-        <div class="project-card" style="border-color: rgba(99,102,241,0.25); background: linear-gradient(135deg, #0d1117 0%, #14152b 100%);">
-          <div style="position:absolute; top:0; left:0; width:4px; height:100%; background: linear-gradient(180deg, #4f7fff, #a855f7); border-radius:4px 0 0 4px;"></div>
+        <!-- Project: ShopEase AI Refund Agent -->
+        <div class="project-card">
           <div class="project-header">
-            <span class="project-tag" style="color:#818cf8; background:rgba(99,102,241,0.08); border-color:rgba(99,102,241,0.2);">AI Agent &amp; Full-Stack</span>
+            <span class="project-tag">ai agent &amp; full-stack</span>
             <div class="project-links">
               <a href="https://web-app-chatbot-ten.vercel.app/" target="_blank" class="project-link">Live Site</a>
               <a href="https://web-app-chatbot.onrender.com" target="_blank" class="project-link">Live API</a>
               <a href="https://github.com/lynxofficial7777-hash/Web-App-Chatbot" target="_blank" class="project-link">GitHub</a>
             </div>
           </div>
-          <h3 class="project-title" style="background: linear-gradient(90deg, #4f7fff, #a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">ShopEase — AI Refund Processing Agent</h3>
+          <h3 class="project-title">ShopEase — AI Refund Processing Agent</h3>
 
           <p class="project-desc">
-            An AI customer-support agent that autonomously handles e-commerce refund requests end-to-end. Built with <strong style="color:#ccc">LangGraph</strong> for agentic orchestration and <strong style="color:#ccc">Groq's Llama 3.3 70B</strong> for reasoning, the agent looks up the customer's order, validates it against store policy, and approves or denies the refund — with live streaming responses and sentiment-aware tone adjustment. Wrapped in a full storefront demo (React) so the agent can be seen operating in a real customer journey: browse → cart → checkout → support chat.
+            An AI customer-support agent that autonomously handles e-commerce refund requests end-to-end. Built with <strong>LangGraph</strong> for agentic orchestration and <strong>Groq's Llama 3.3 70B</strong> for reasoning, the agent looks up the customer's order, validates it against store policy, and approves or denies the refund — with live streaming responses and sentiment-aware tone adjustment. Wrapped in a full storefront demo (React) so the agent can be seen operating in a real customer journey: browse, cart, checkout, support chat.
           </p>
 
-          <div style="background:rgba(99,102,241,0.05); border:1px solid rgba(99,102,241,0.15); border-radius:12px; padding:20px; margin-bottom:20px;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#818cf8; margin-bottom:12px;">Problem Solved</p>
-            <p style="font-size:0.9rem; color:#aaa; line-height:1.7;">
-              Refund requests are repetitive but policy-sensitive — a bot that just says "refund approved" to everyone isn't useful, and a bot that can't actually check policy isn't trustworthy. ShopEase's agent uses real tool-calling (lookup → validate → process) so every decision is grounded in actual order data and store rules, not just plausible-sounding text. <strong style="color:#ccc">Result: a support agent that reasons through a real workflow instead of guessing.</strong>
+          <div style="border-left:2px solid var(--ink-line); padding-left:16px; margin-bottom:20px;">
+            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:8px;">problem solved</p>
+            <p style="font-size:0.9rem; color:var(--paper-dim); line-height:1.7;">
+              Refund requests are repetitive but policy-sensitive — a bot that just says "refund approved" to everyone isn't useful, and a bot that can't actually check policy isn't trustworthy. ShopEase's agent uses real tool-calling (lookup, validate, process) so every decision is grounded in actual order data and store rules, not just plausible-sounding text.
             </p>
           </div>
 
-          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">3-Tool Agent Graph</div>
-              <div style="font-size:0.78rem; color:#666;">lookup_customer → validate_policy → process_refund</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">Streaming Responses</div>
-              <div style="font-size:0.78rem; color:#666;">Server-Sent Events for real-time token streaming</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">Sentiment-Aware Tone</div>
-              <div style="font-size:0.78rem; color:#666;">Detects frustration and adjusts response tone</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">Full Storefront Demo</div>
-              <div style="font-size:0.78rem; color:#666;">Cart, checkout, and order history around the agent</div>
-            </div>
-          </div>
-
           <div style="margin-bottom:20px;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#888; margin-bottom:10px;">Hard Engineering Solved</p>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(99,102,241,0.3);">Fixed the LLM over-triggering refund tools on general policy questions via tightened tool-use guardrails in the system prompt</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(99,102,241,0.3);">Found and fixed a frontend regex bug that rendered false "DENIED" decision cards from policy text mentioning the word, not an actual denial</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(99,102,241,0.3);">Diagnosed a 401 API error to a revoked Groq key and restored service via key rotation across Render env vars</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(99,102,241,0.3);">Fixed SPA navigation bugs where window.location.href reloads were wiping React cart state on every route change</div>
-            </div>
+            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:10px;">hard engineering solved</p>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed the LLM over-triggering refund tools on general policy questions via tightened tool-use guardrails in the system prompt</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Found and fixed a frontend regex bug that rendered false "DENIED" decision cards from policy text mentioning the word, not an actual denial</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Diagnosed a 401 API error to a revoked Groq key and restored service via key rotation across Render environment variables</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed SPA navigation bugs where window.location.href reloads were wiping React cart state on every route change</li>
+            </ul>
           </div>
 
           <div class="project-stack">
@@ -539,62 +509,35 @@
           </div>
         </div>
 
-        <!-- Project 0: Active Spark Gen 7 -->
-        <div class="project-card" style="border-color: rgba(0,180,216,0.25); background: linear-gradient(135deg, #0d1117 0%, #0a1628 100%);">
-          <div style="position:absolute; top:0; left:0; width:4px; height:100%; background: linear-gradient(180deg, #00f5ff, #ff1b8d); border-radius:4px 0 0 4px;"></div>
+        <!-- Project: Active Spark Gen 7 -->
+        <div class="project-card">
           <div class="project-header">
-            <span class="project-tag" style="color:#00f5ff; background:rgba(0,245,255,0.08); border-color:rgba(0,245,255,0.2);">⚡ AI &amp; Android</span>
+            <span class="project-tag">ai &amp; android</span>
             <div class="project-links">
-              <a href="https://github.com/lynxofficial7777-hash/Active-Spark-Gen-Z-" target="_blank" class="project-link">🐙 GitHub</a>
+              <a href="https://github.com/lynxofficial7777-hash/Active-Spark-Gen-Z-" target="_blank" class="project-link">GitHub</a>
             </div>
           </div>
-          <h3 class="project-title" style="background: linear-gradient(90deg, #00f5ff, #ff1b8d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Active Spark Gen 7 — AI Fitness Battle App</h3>
+          <h3 class="project-title">Active Spark Gen 7 — AI Fitness Battle App</h3>
 
           <p class="project-desc">
-            A real-time AI-powered fitness battle app for kids built entirely in Kotlin. Uses <strong style="color:#ccc">MediaPipe PoseLandmarker</strong> running at ~30fps on-device to detect body pose and count exercise reps automatically — no wearable needed, just a phone camera. Kids compete in live multiplayer battles where the opponent's reps sync in real time, or practice solo and earn XP.
+            A real-time AI-powered fitness battle app for kids built entirely in Kotlin. Uses <strong>MediaPipe PoseLandmarker</strong> running at ~30fps on-device to detect body pose and count exercise reps automatically — no wearable needed, just a phone camera. Kids compete in live multiplayer battles where the opponent's reps sync in real time, or practice solo and earn XP.
           </p>
 
-          <!-- Problem & Solution callout -->
-          <div style="background:rgba(0,245,255,0.05); border:1px solid rgba(0,245,255,0.15); border-radius:12px; padding:20px; margin-bottom:20px;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#00f5ff; margin-bottom:12px;">🎯 Problem Solved</p>
-            <p style="font-size:0.9rem; color:#aaa; line-height:1.7;">
-              Kids often skip exercise because it's boring and solitary. Active Spark turns fitness into a competitive game — children challenge each other to squat, push-up, and jump battles. The AI camera tracks every rep automatically so there's no cheating and no manual counting. Parents get a dashboard to monitor activity. <strong style="color:#ccc">Result: exercise becomes something kids actually want to do.</strong>
+          <div style="border-left:2px solid var(--ink-line); padding-left:16px; margin-bottom:20px;">
+            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:8px;">problem solved</p>
+            <p style="font-size:0.9rem; color:var(--paper-dim); line-height:1.7;">
+              Kids often skip exercise because it's boring and solitary. Active Spark turns fitness into a competitive game — children challenge each other to squat, push-up, and jump battles. The AI camera tracks every rep automatically so there's no cheating and no manual counting. Parents get a dashboard to monitor activity.
             </p>
           </div>
 
-          <!-- Key achievements -->
-          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:1.3rem; margin-bottom:4px;">🦴</div>
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">33 Pose Landmarks</div>
-              <div style="font-size:0.78rem; color:#666;">Tracked per frame via MediaPipe skeleton</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:1.3rem; margin-bottom:4px;">⚡</div>
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">~30fps On-Device AI</div>
-              <div style="font-size:0.78rem; color:#666;">No cloud, no lag — runs on the phone itself</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:1.3rem; margin-bottom:4px;">🏆</div>
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">10+ Exercise Types</div>
-              <div style="font-size:0.78rem; color:#666;">Squat, push-up, sit-up, burpee, lunge &amp; more</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:14px;">
-              <div style="font-size:1.3rem; margin-bottom:4px;">🔴</div>
-              <div style="font-size:0.82rem; font-weight:700; color:#ccc;">Live Multiplayer</div>
-              <div style="font-size:0.78rem; color:#666;">Opponent reps sync in real time via Firebase</div>
-            </div>
-          </div>
-
-          <!-- Hard problems solved -->
           <div style="margin-bottom:20px;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#888; margin-bottom:10px;">🔧 Hard Engineering Solved</p>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(0,245,255,0.3);">Fixed bitmap row-stride padding corruption in CameraX RGBA_8888 frames</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(0,245,255,0.3);">Fixed camera restarting on every Jetpack Compose recomposition (every rep)</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(0,245,255,0.3);">Solved leaderboard race condition using Firebase atomic Cloud Function transactions</div>
-              <div style="font-size:0.85rem; color:#999; padding-left:12px; border-left:2px solid rgba(0,245,255,0.3);">Fixed matrix transform order for front-camera mirror (flip before rotate)</div>
-            </div>
+            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:10px;">hard engineering solved</p>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed bitmap row-stride padding corruption in CameraX RGBA_8888 frames</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed camera restarting on every Jetpack Compose recomposition (every rep)</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Solved leaderboard race condition using Firebase atomic Cloud Function transactions</li>
+              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed matrix transform order for front-camera mirror (flip before rotate)</li>
+            </ul>
           </div>
 
           <div class="project-stack">
@@ -611,13 +554,13 @@
           </div>
         </div>
 
-        <!-- Project 1: AcademyFlow Mobile -->
+        <!-- Project: AcademyFlow Mobile -->
         <div class="project-card">
           <div class="project-header">
-            <span class="project-tag">Featured Project</span>
+            <span class="project-tag">mobile + ml</span>
             <div class="project-links">
-              <a href="https://academyflow-mobile-app.onrender.com" target="_blank" class="project-link">🌐 Live API</a>
-              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">⭐ GitHub</a>
+              <a href="https://academyflow-mobile-app.onrender.com" target="_blank" class="project-link">Live API</a>
+              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">GitHub</a>
             </div>
           </div>
           <h3 class="project-title">AcademyFlow — AI Student Performance App</h3>
@@ -638,13 +581,13 @@
           </div>
         </div>
 
-        <!-- Project 2: AcademyFlow Streamlit -->
+        <!-- Project: AcademyFlow Streamlit -->
         <div class="project-card">
           <div class="project-header">
-            <span class="project-tag">ML Web App</span>
+            <span class="project-tag">ml web app</span>
             <div class="project-links">
-              <a href="https://academyflow.streamlit.app/" target="_blank" class="project-link">🚀 Live Demo</a>
-              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">⭐ GitHub</a>
+              <a href="https://academyflow.streamlit.app/" target="_blank" class="project-link">Live Demo</a>
+              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">GitHub</a>
             </div>
           </div>
           <h3 class="project-title">AcademyFlow — Student Performance Predictor (ML Web App)</h3>
@@ -673,12 +616,12 @@
       <p class="section-label">Contact</p>
       <h2 class="section-title">Let's Connect</h2>
       <div class="contact-card">
-        <h2>Open to Opportunities 🚀</h2>
-        <p>I'm a fresh graduate actively looking for full-time opportunities in Data Science, AI/ML Engineering, Software Engineering, and Mobile Development. Available for immediate joining.</p>
+        <h2>Open to opportunities</h2>
+        <p>I'm a fresh graduate actively looking for full-time opportunities in data science, AI/ML engineering, software engineering, and mobile development. Available for immediate joining.</p>
         <div class="contact-links">
-          <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-primary">✉️ Email Me</a>
-          <a href="https://www.linkedin.com/in/baranimoorthy77" target="_blank" class="btn btn-outline">💼 LinkedIn</a>
-          <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+          <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-primary">Email me</a>
+          <a href="https://www.linkedin.com/in/baranimoorthy77" target="_blank" class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="btn btn-outline">GitHub</a>
         </div>
       </div>
     </div>
@@ -686,7 +629,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Designed &amp; Built by <BARANI class="M">BARANI.M</BARANI> &copy; 2026</p>
+    <p class="mono">barani.m — 2026</p>
   </footer>
 
 </body>
