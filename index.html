@@ -1,636 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BARANI.M | Data Science Portfolio</title>
- <link rel="preconnect" href="https://fonts.googleapis.com">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BARANI.M | Data Science Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --signal:      #e8492f;
-      --signal-dim:  rgba(232, 73, 47, 0.12);
-      --ink:         #0a0a0b;
-      --ink-raised:  #131315;
-      --ink-line:    #1e1e21;
-      --paper:       #e8e6e0;
-      --paper-dim:   #6b6b6f;
-      --paper-faint: #454548;
-    }
-
-    .mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--ink);
-      color: var(--paper);
-      line-height: 1.6;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px clamp(24px, 8vw, 100px);
-      background: rgba(10,10,11,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--ink-line);
-    }
-    .nav-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--paper);
-      letter-spacing: -0.02em;
-    }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--paper-dim);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--paper); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 24px clamp(24px, 8vw, 100px);
-      position: relative;
-    }
-
-    .hero-inner { max-width: 780px; }
-
-    .hero-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      color: var(--paper-dim);
-      letter-spacing: 0.02em;
-      margin-bottom: 32px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--signal);
-      box-shadow: 0 0 0 3px var(--signal-dim);
-    }
-
-    .hero-name {
-      font-size: clamp(3.2rem, 9vw, 6.5rem);
-      font-weight: 800;
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
-    }
-
-    .hero-role {
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
-      color: var(--paper-dim);
-      max-width: 520px;
-      margin-bottom: 44px;
-      font-weight: 400;
-      line-height: 1.55;
-    }
-
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 13px 26px;
-      border-radius: 3px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.18s ease;
-      cursor: pointer;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: var(--signal);
-      color: var(--ink);
-    }
-    .btn-primary:hover { background: #ff5a3c; }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--paper);
-      border-color: var(--ink-line);
-    }
-    .btn-outline:hover { border-color: var(--paper-dim); }
-
-    .hero-meta {
-      position: absolute;
-      bottom: 28px;
-      left: clamp(24px, 8vw, 100px);
-      font-size: 0.75rem;
-      color: var(--paper-faint);
-      letter-spacing: 0.02em;
-      display: flex;
-      gap: 10px;
-    }
-
-    .meta-sep { color: var(--ink-line); }
-
-    /* ── SECTIONS ── */
-    section { padding: 120px clamp(24px, 8vw, 100px); }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: var(--signal);
-      margin-bottom: 14px;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 52px;
-      line-height: 1.2;
-    }
-
-    /* ── ABOUT ── */
-    #about { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-    .about-text { font-size: 1.05rem; color: var(--paper-dim); line-height: 1.8; }
-    .about-text p + p { margin-top: 16px; }
-    .about-text strong { color: var(--paper); font-weight: 600; }
-    .about-info {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid var(--ink-line);
-    }
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--ink-line);
-    }
-    .info-item .label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--paper-faint);
-      letter-spacing: 0.02em;
-    }
-    .info-item .value { font-size: 0.92rem; font-weight: 500; color: var(--paper); text-align: right; }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 1px;
-      background: var(--ink-line);
-      border: 1px solid var(--ink-line);
-    }
-    .skill-chip {
-      background: var(--ink-raised);
-      padding: 14px 16px;
-      text-align: left;
-      font-size: 0.86rem;
-      font-weight: 500;
-      color: var(--paper-dim);
-      transition: all 0.15s;
-    }
-    .skill-chip:hover {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    /* ── PROJECTS ── */
-    #projects { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
-    .projects-grid { display: flex; flex-direction: column; gap: 24px; }
-    .project-card {
-      background: var(--ink);
-      border: 1px solid var(--ink-line);
-      border-radius: 6px;
-      padding: 36px;
-      transition: border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card:hover {
-      border-color: var(--paper-faint);
-    }
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .project-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: var(--signal);
-      padding: 4px 0;
-    }
-    .project-links { display: flex; gap: 10px; }
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--paper-dim);
-      text-decoration: none;
-      padding: 6px 14px;
-      border: 1px solid var(--ink-line);
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .project-link:hover { color: var(--paper); border-color: var(--paper-faint); }
-    .project-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    .project-desc {
-      font-size: 0.95rem;
-      color: var(--paper-dim);
-      line-height: 1.75;
-      margin-bottom: 20px;
-    }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
-    .stack-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.76rem;
-      font-weight: 400;
-      color: var(--paper-faint);
-      background: transparent;
-      border: 1px solid var(--ink-line);
-      padding: 4px 10px;
-      border-radius: 3px;
-    }
-
-    /* ── CONTACT ── */
-    .contact-card {
-      background: var(--ink-raised);
-      border: 1px solid var(--ink-line);
-      border-radius: 6px;
-      padding: 60px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-card h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
-    .contact-card p { color: var(--paper-dim); margin-bottom: 32px; font-size: 1rem; max-width: 520px; margin-left: auto; margin-right: auto; }
-    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 28px;
-      color: var(--paper-faint);
-      font-size: 0.82rem;
-      border-top: 1px solid var(--ink-line);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .contact-card { padding: 40px 24px; }
-    }
-  </style>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--signal: #e8492f;
+--signal-dim: rgba(232, 73, 47, 0.12);
+--ok: #3ecf8e;
+--ink: #08080a;
+--ink-raised: #101012;
+--ink-line: #202024;
+--paper: #e8e6e0;
+--paper-dim: #7a7a7f;
+--paper-faint: #4a4a4e;
+--sidebar-w: 240px;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--paper); line-height: 1.6; }
+.sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; border-right: 1px solid var(--ink-line); padding: 32px 28px; display: flex; flex-direction: column; z-index: 100; }
+.sidebar-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; }
+.sidebar-status { display: flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--paper-dim); margin-bottom: 48px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(62,207,142,0.15); flex-shrink: 0; }
+.sidebar-nav { display: flex; flex-direction: column; gap: 4px; margin-bottom: auto; }
+.sidebar-nav a { font-size: 0.86rem; color: var(--paper-dim); text-decoration: none; padding: 8px 0; display: flex; align-items: center; gap: 10px; transition: color 0.15s; }
+.sidebar-nav a::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--paper-faint); transition: background 0.15s; }
+.sidebar-nav a:hover { color: var(--paper); }
+.sidebar-nav a:hover::before { background: var(--signal); }
+.sidebar-foot { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--paper-faint); line-height: 1.8; }
+.main { margin-left: var(--sidebar-w); }
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 24px clamp(32px, 6vw, 90px); }
+.terminal { max-width: 720px; width: 100%; }
+.terminal-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--ink-raised); border: 1px solid var(--ink-line); border-bottom: none; border-radius: 6px 6px 0 0; }
+.terminal-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-line); }
+.terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--paper-faint); margin-left: 8px; }
+.terminal-body { background: var(--ink); border: 1px solid var(--ink-line); border-radius: 0 0 6px 6px; padding: 32px clamp(20px, 4vw, 40px); font-family: 'JetBrains Mono', monospace; }
+.t-line { font-size: 0.88rem; color: var(--paper-dim); margin-bottom: 6px; }
+.t-prompt { color: var(--ok); }
+.t-name { font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800; font-family: 'Inter', sans-serif; letter-spacing: -0.03em; color: var(--paper); margin: 18px 0 20px; line-height: 1; }
+.t-role { font-family: 'Inter', sans-serif; font-size: 1.05rem; color: var(--paper-dim); line-height: 1.6; margin-bottom: 28px; max-width: 520px; }
+.t-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 22px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: all 0.18s ease; cursor: pointer; border: 1px solid transparent; }
+.btn-primary { background: var(--signal); color: var(--ink); }
+.btn-primary:hover { background: #ff5a3c; }
+.btn-outline { background: transparent; color: var(--paper); border-color: var(--ink-line); }
+.btn-outline:hover { border-color: var(--paper-dim); }
+.t-cursor { display: inline-block; width: 8px; height: 16px; background: var(--paper-dim); animation: blink 1s step-end infinite; vertical-align: middle; }
+@keyframes blink { 50% { opacity: 0; } }
+section { padding: 90px clamp(32px, 6vw, 90px); }
+.container { max-width: 880px; }
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--signal); margin-bottom: 12px; }
+.section-label::before { content: '// '; color: var(--paper-faint); }
+.section-title { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 44px; }
+#about { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
+.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
+.about-text { font-size: 1.02rem; color: var(--paper-dim); line-height: 1.8; }
+.about-text p + p { margin-top: 16px; }
+.about-text strong { color: var(--paper); font-weight: 600; }
+.about-info { display: flex; flex-direction: column; border-top: 1px solid var(--ink-line); }
+.info-item { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--ink-line); }
+.info-item .label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--paper-faint); }
+.info-item .value { font-size: 0.9rem; font-weight: 500; color: var(--paper); text-align: right; }
+.status-board { display: flex; flex-direction: column; gap: 28px; }
+.status-row-label { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--paper-faint); margin-bottom: 10px; }
+.status-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.status-tag { display: inline-flex; align-items: center; gap: 7px; font-size: 0.84rem; color: var(--paper-dim); background: var(--ink-raised); border: 1px solid var(--ink-line); padding: 7px 13px; border-radius: 4px; }
+.status-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--ok); flex-shrink: 0; }
+#projects { background: var(--ink-raised); border-top: 1px solid var(--ink-line); border-bottom: 1px solid var(--ink-line); }
+.log { display: flex; flex-direction: column; }
+.log-entry { border-top: 1px solid var(--ink-line); padding: 32px 0; }
+.log-entry:last-child { border-bottom: 1px solid var(--ink-line); }
+.log-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.log-meta { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--paper-faint); margin-bottom: 8px; }
+.log-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--ok); }
+.log-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--ok); }
+.log-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+.log-links { display: flex; gap: 10px; flex-shrink: 0; }
+.log-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--paper-dim); text-decoration: none; padding: 6px 12px; border: 1px solid var(--ink-line); border-radius: 4px; transition: all 0.2s; }
+.log-links a:hover { color: var(--paper); border-color: var(--paper-faint); }
+.log-desc { font-size: 0.95rem; color: var(--paper-dim); line-height: 1.75; margin-bottom: 18px; max-width: 760px; }
+.log-desc strong { color: var(--paper); font-weight: 600; }
+.log-block { border-left: 2px solid var(--ink-line); padding-left: 16px; margin-bottom: 16px; }
+.log-block-label { font-family: 'JetBrains Mono', monospace; font-size: 0.73rem; color: var(--paper-faint); margin-bottom: 6px; }
+.log-block p { font-size: 0.88rem; color: var(--paper-dim); line-height: 1.7; }
+.log-fixes { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.log-fixes li { font-size: 0.86rem; color: var(--paper-dim); padding-left: 18px; position: relative; }
+.log-fixes li .dollar { position: absolute; left: 0; color: var(--signal); font-family: 'JetBrains Mono', monospace; }
+.log-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--paper-faint); border: 1px solid var(--ink-line); padding: 4px 10px; border-radius: 3px; }
+.contact-card { border: 1px solid var(--ink-line); border-radius: 6px; padding: 56px 44px; }
+.contact-card h2 { font-size: 1.9rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+.contact-card p { color: var(--paper-dim); margin-bottom: 28px; font-size: 0.98rem; max-width: 480px; }
+.contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+footer { padding: 24px clamp(32px, 6vw, 90px); color: var(--paper-faint); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; border-top: 1px solid var(--ink-line); }
+@media (max-width: 900px) {
+.sidebar { position: static; width: 100%; height: auto; flex-direction: row; align-items: center; padding: 16px 24px; border-right: none; border-bottom: 1px solid var(--ink-line); }
+.sidebar-status { display: none; }
+.sidebar-nav { flex-direction: row; gap: 18px; margin: 0 0 0 auto; }
+.sidebar-foot { display: none; }
+.main { margin-left: 0; }
+.about-grid { grid-template-columns: 1fr; gap: 32px; }
+.log-links { width: 100%; }
+}
+</style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">BARANI.M</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-status mono">
-        <span class="status-dot"></span>
-        status: open to work
-      </p>
-      <h1 class="hero-name">Barani M.</h1>
-      <p class="hero-role">Data scientist who ships the whole stack —<br>model, API, app, and the deploy that keeps it running.</p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">View the work</a>
-        <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">Get in touch</a>
-      </div>
-    </div>
-    <div class="hero-meta mono">
-      <span>Chennai, India</span>
-      <span class="meta-sep">/</span>
-      <span>B.Sc. Data Science, 2026</span>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <p class="section-label">About Me</p>
-      <h2 class="section-title">Who I Am</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I'm a B.Sc. Data Science graduate from Sathyabama Institute of Science and Technology who builds things end-to-end — from training ML models to shipping them inside real applications that people actually use.</p>
-          <p>I've built <strong>full-stack AI applications</strong> using Python, FastAPI, Flutter, and Kotlin — connecting trained ML models to mobile frontends with REST APIs, JWT auth, and cloud databases. I know both sides: the data science that produces the model and the engineering that puts it in users' hands.</p>
-          <p>I've worked with <strong>on-device AI inference</strong> using MediaPipe (real-time pose detection at ~30fps) and <strong>cloud ML deployment</strong> via Render and Streamlit Cloud. I've built live multiplayer systems using Firebase Realtime Database and Cloud Functions, handled CameraX + MediaPipe pipeline bugs at the byte level, diagnosed 12 production bugs on a live Android app, and built production RAG pipelines using LangChain, FAISS, and the Anthropic Claude API.</p>
-          <p>My projects include: an AI fitness battle app with real-time pose tracking (Active Spark Gen 7), a full-stack student performance predictor with ML model + REST API + mobile app (AcademyFlow), an AI code review agent using RAG pipelines and Claude API (CodeSense), and interactive ML dashboards deployed on the cloud.</p>
-          <p><strong>I don't build things for portfolios. I build things for production.</strong></p>
-        </div>
-        <div class="about-info">
-          <div class="info-item">
-            <div class="label">university</div>
-            <div class="value">Sathyabama Institute of Science and Technology</div>
-          </div>
-          <div class="info-item">
-            <div class="label">degree</div>
-            <div class="value">B.Sc. Data Science</div>
-          </div>
-          <div class="info-item">
-            <div class="label">location</div>
-            <div class="value">Chennai, India</div>
-          </div>
-          <div class="info-item">
-            <div class="label">email</div>
-            <div class="value">baranimoorthy77@gmail.com</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <p class="section-label">Tech Stack</p>
-      <h2 class="section-title">Skills &amp; Technologies</h2>
-
-      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">ai &amp; machine learning</p>
-      <div class="skills-grid" style="margin-bottom:32px;">
-        <div class="skill-chip">Python</div>
-        <div class="skill-chip">Machine Learning</div>
-        <div class="skill-chip">Scikit-learn</div>
-        <div class="skill-chip">Random Forest</div>
-        <div class="skill-chip">Gradient Boosting</div>
-        <div class="skill-chip">MediaPipe AI</div>
-        <div class="skill-chip">Pandas &amp; NumPy</div>
-        <div class="skill-chip">Data Analysis</div>
-        <div class="skill-chip">Model Evaluation</div>
-        <div class="skill-chip">Feature Engineering</div>
-      </div>
-
-      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">mobile development</p>
-      <div class="skills-grid" style="margin-bottom:32px;">
-        <div class="skill-chip">Android / Kotlin</div>
-        <div class="skill-chip">Jetpack Compose</div>
-        <div class="skill-chip">MVVM Architecture</div>
-        <div class="skill-chip">Hilt / DI</div>
-        <div class="skill-chip">Flutter / Dart</div>
-        <div class="skill-chip">CameraX</div>
-        <div class="skill-chip">FCM Push Notifications</div>
-        <div class="skill-chip">Lottie Animations</div>
-      </div>
-
-      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">backend &amp; full-stack</p>
-      <div class="skills-grid" style="margin-bottom:32px;">
-        <div class="skill-chip">FastAPI</div>
-        <div class="skill-chip">REST API Design</div>
-        <div class="skill-chip">JWT Auth</div>
-        <div class="skill-chip">Streamlit</div>
-        <div class="skill-chip">PostgreSQL</div>
-        <div class="skill-chip">Supabase</div>
-        <div class="skill-chip">Firebase RTDB</div>
-        <div class="skill-chip">Cloud Functions</div>
-        <div class="skill-chip">Real-Time Sync</div>
-        <div class="skill-chip">API Security</div>
-      </div>
-
-      <p class="mono" style="font-size:0.75rem; font-weight:500; letter-spacing:0.02em; color:var(--paper-faint); margin-bottom:14px;">devops &amp; tools</p>
-      <div class="skills-grid">
-        <div class="skill-chip">Git &amp; GitHub</div>
-        <div class="skill-chip">Firebase Distribution</div>
-        <div class="skill-chip">Render Cloud Deploy</div>
-        <div class="skill-chip">Gradle / Build Systems</div>
-        <div class="skill-chip">Android Studio</div>
-        <div class="skill-chip">Debugging &amp; Profiling</div>
-        <div class="skill-chip">Agile / Self-managed</div>
-        <div class="skill-chip">CI / CD Basics</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <p class="section-label">Projects</p>
-      <h2 class="section-title">What I've Built</h2>
-      <div class="projects-grid">
-
-        <!-- Project: ShopEase AI Refund Agent -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-tag">ai agent &amp; full-stack</span>
-            <div class="project-links">
-              <a href="https://web-app-chatbot-ten.vercel.app/" target="_blank" class="project-link">Live Site</a>
-              <a href="https://web-app-chatbot.onrender.com" target="_blank" class="project-link">Live API</a>
-              <a href="https://github.com/lynxofficial7777-hash/Web-App-Chatbot" target="_blank" class="project-link">GitHub</a>
-            </div>
-          </div>
-          <h3 class="project-title">ShopEase — AI Refund Processing Agent</h3>
-
-          <p class="project-desc">
-            An AI customer-support agent that autonomously handles e-commerce refund requests end-to-end. Built with <strong>LangGraph</strong> for agentic orchestration and <strong>Groq's Llama 3.3 70B</strong> for reasoning, the agent looks up the customer's order, validates it against store policy, and approves or denies the refund — with live streaming responses and sentiment-aware tone adjustment. Wrapped in a full storefront demo (React) so the agent can be seen operating in a real customer journey: browse, cart, checkout, support chat.
-          </p>
-
-          <div style="border-left:2px solid var(--ink-line); padding-left:16px; margin-bottom:20px;">
-            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:8px;">problem solved</p>
-            <p style="font-size:0.9rem; color:var(--paper-dim); line-height:1.7;">
-              Refund requests are repetitive but policy-sensitive — a bot that just says "refund approved" to everyone isn't useful, and a bot that can't actually check policy isn't trustworthy. ShopEase's agent uses real tool-calling (lookup, validate, process) so every decision is grounded in actual order data and store rules, not just plausible-sounding text.
-            </p>
-          </div>
-
-          <div style="margin-bottom:20px;">
-            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:10px;">hard engineering solved</p>
-            <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed the LLM over-triggering refund tools on general policy questions via tightened tool-use guardrails in the system prompt</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Found and fixed a frontend regex bug that rendered false "DENIED" decision cards from policy text mentioning the word, not an actual denial</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Diagnosed a 401 API error to a revoked Groq key and restored service via key rotation across Render environment variables</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed SPA navigation bugs where window.location.href reloads were wiping React cart state on every route change</li>
-            </ul>
-          </div>
-
-          <div class="project-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">LangGraph</span>
-            <span class="stack-tag">Groq (Llama 3.3 70B)</span>
-            <span class="stack-tag">React</span>
-            <span class="stack-tag">Vite</span>
-            <span class="stack-tag">React Router</span>
-            <span class="stack-tag">SSE Streaming</span>
-            <span class="stack-tag">Render</span>
-            <span class="stack-tag">Vercel</span>
-          </div>
-        </div>
-
-        <!-- Project: Active Spark Gen 7 -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-tag">ai &amp; android</span>
-            <div class="project-links">
-              <a href="https://github.com/lynxofficial7777-hash/Active-Spark-Gen-Z-" target="_blank" class="project-link">GitHub</a>
-            </div>
-          </div>
-          <h3 class="project-title">Active Spark Gen 7 — AI Fitness Battle App</h3>
-
-          <p class="project-desc">
-            A real-time AI-powered fitness battle app for kids built entirely in Kotlin. Uses <strong>MediaPipe PoseLandmarker</strong> running at ~30fps on-device to detect body pose and count exercise reps automatically — no wearable needed, just a phone camera. Kids compete in live multiplayer battles where the opponent's reps sync in real time, or practice solo and earn XP.
-          </p>
-
-          <div style="border-left:2px solid var(--ink-line); padding-left:16px; margin-bottom:20px;">
-            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:8px;">problem solved</p>
-            <p style="font-size:0.9rem; color:var(--paper-dim); line-height:1.7;">
-              Kids often skip exercise because it's boring and solitary. Active Spark turns fitness into a competitive game — children challenge each other to squat, push-up, and jump battles. The AI camera tracks every rep automatically so there's no cheating and no manual counting. Parents get a dashboard to monitor activity.
-            </p>
-          </div>
-
-          <div style="margin-bottom:20px;">
-            <p class="mono" style="font-size:0.75rem; color:var(--paper-faint); margin-bottom:10px;">hard engineering solved</p>
-            <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed bitmap row-stride padding corruption in CameraX RGBA_8888 frames</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed camera restarting on every Jetpack Compose recomposition (every rep)</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Solved leaderboard race condition using Firebase atomic Cloud Function transactions</li>
-              <li style="font-size:0.88rem; color:var(--paper-dim); padding-left:16px; position:relative;"><span style="position:absolute; left:0; color:var(--paper-faint);">—</span>Fixed matrix transform order for front-camera mirror (flip before rotate)</li>
-            </ul>
-          </div>
-
-          <div class="project-stack">
-            <span class="stack-tag">Kotlin</span>
-            <span class="stack-tag">Jetpack Compose</span>
-            <span class="stack-tag">MediaPipe AI</span>
-            <span class="stack-tag">CameraX</span>
-            <span class="stack-tag">MVVM + Hilt</span>
-            <span class="stack-tag">Firebase RTDB</span>
-            <span class="stack-tag">Cloud Functions</span>
-            <span class="stack-tag">FCM Push</span>
-            <span class="stack-tag">Lottie</span>
-            <span class="stack-tag">Android SDK</span>
-          </div>
-        </div>
-
-        <!-- Project: AcademyFlow Mobile -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-tag">mobile + ml</span>
-            <div class="project-links">
-              <a href="https://academyflow-mobile-app.onrender.com" target="_blank" class="project-link">Live API</a>
-              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">GitHub</a>
-            </div>
-          </div>
-          <h3 class="project-title">AcademyFlow — AI Student Performance App</h3>
-          <p class="project-desc">
-            A full-stack AI-powered mobile application that predicts student exam scores using machine learning. Students input their study habits and the app returns a predicted score, personalized insights, weekly study roadmap, goal gap analysis, peer comparison, and subject priority recommendations. Built with Flutter for Android, backed by a FastAPI REST API serving a trained ML model deployed on Render cloud with JWT authentication and Supabase PostgreSQL for user data persistence.
-          </p>
-          <div class="project-stack">
-            <span class="stack-tag">Flutter</span>
-            <span class="stack-tag">Dart</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">Scikit-learn</span>
-            <span class="stack-tag">Supabase</span>
-            <span class="stack-tag">PostgreSQL</span>
-            <span class="stack-tag">JWT Auth</span>
-            <span class="stack-tag">Render</span>
-            <span class="stack-tag">REST API</span>
-          </div>
-        </div>
-
-        <!-- Project: AcademyFlow Streamlit -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-tag">ml web app</span>
-            <div class="project-links">
-              <a href="https://academyflow.streamlit.app/" target="_blank" class="project-link">Live Demo</a>
-              <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="project-link">GitHub</a>
-            </div>
-          </div>
-          <h3 class="project-title">AcademyFlow — Student Performance Predictor (ML Web App)</h3>
-          <p class="project-desc">
-            A machine learning web application built with Streamlit that predicts student exam performance based on study habits and lifestyle factors. The model was trained on a real student performance dataset using ensemble learning techniques including Random Forest and Gradient Boosting. Features include real-time score prediction, grade classification, and interactive data visualizations — deployed live on Streamlit Cloud.
-          </p>
-          <div class="project-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Streamlit</span>
-            <span class="stack-tag">Scikit-learn</span>
-            <span class="stack-tag">Pandas</span>
-            <span class="stack-tag">NumPy</span>
-            <span class="stack-tag">Machine Learning</span>
-            <span class="stack-tag">Data Visualization</span>
-            <span class="stack-tag">Streamlit Cloud</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <p class="section-label">Contact</p>
-      <h2 class="section-title">Let's Connect</h2>
-      <div class="contact-card">
-        <h2>Open to opportunities</h2>
-        <p>I'm a fresh graduate actively looking for full-time opportunities in data science, AI/ML engineering, software engineering, and mobile development. Available for immediate joining.</p>
-        <div class="contact-links">
-          <a href="mailto:baranimoorthy77@gmail.com" class="btn btn-primary">Email me</a>
-          <a href="https://www.linkedin.com/in/baranimoorthy77" target="_blank" class="btn btn-outline">LinkedIn</a>
-          <a href="https://github.com/lynxofficial7777-hash" target="_blank" class="btn btn-outline">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p class="mono">barani.m — 2026 · v2</p>
-  </footer>
-
+<aside class="sidebar">
+<div class="sidebar-logo mono">barani.m</div>
+<div class="sidebar-status"><span class="status-dot"></span>open to work</div>
+<nav class="sidebar-nav">
+<a href="#about">about</a>
+<a href="#skills">skills</a>
+<a href="#projects">projects</a>
+<a href="#contact">contact</a>
+</nav>
+<div class="sidebar-foot">Chennai, India<br>B.Sc. Data Science<br>Class of 2026</div>
+</aside>
+<div class="main">
+<section class="hero">
+<div class="terminal">
+<div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">whoami</span></div>
+<div class="terminal-body">
+<div class="t-line"><span class="t-prompt">$</span> whoami</div>
+<h1 class="t-name">Barani M.</h1>
+<p class="t-role">Data scientist who ships the whole stack &mdash; model, API, app, and the deploy that keeps it running.<span class="t-cursor"></span></p>
+<div class="t-btns">
+<a href="#projects" class="btn btn-primary">./view-projects</a>
+<a href="mailto:baranimoorthy77@gmail.com" class="btn btn-outline">./contact</a>
+</div>
+</div>
+</div>
+</section>
+<section id="about">
+<div class="container">
+<p class="section-label">About Me</p>
+<h2 class="section-title">Who I Am</h2>
+<div class="about-grid">
+<div class="about-text">
+<p>I'm a B.Sc. Data Science graduate from Sathyabama Institute of Science and Technology who builds things end-to-end &mdash; from training ML models to shipping them inside real applications that people actually use.</p>
+<p>I've built <strong>full-stack AI applications</strong> using Python, FastAPI, Flutter, and Kotlin &mdash; connecting trained ML models to mobile frontends with REST APIs, JWT auth, and cloud databases. I know both sides: the data science that produces the model and the engineering that puts it in users' hands.</p>
+<p>I've worked with <strong>on-device AI inference</strong> using MediaPipe (real-time pose detection at ~30fps) and <strong>cloud ML deployment</strong> via Render and Streamlit Cloud. I've built live multiplayer systems using Firebase Realtime Database and Cloud Functions, handled CameraX + MediaPipe pipeline bugs at the byte level, diagnosed 12 production bugs on a live Android app, and built production RAG pipelines using LangChain, FAISS, and the Anthropic Claude API.</p>
+<p>My projects include: an AI refund-processing agent built on LangGraph and Groq (ShopEase), an AI fitness battle app with real-time pose tracking (Active Spark Gen 7), a full-stack student performance predictor with ML model + REST API + mobile app (AcademyFlow), and an AI code review agent using RAG pipelines and the Claude API (CodeSense).</p>
+<p><strong>I don't build things for portfolios. I build things for production.</strong></p>
+</div>
+<div class="about-info">
+<div class="info-item"><div class="label">university</div><div class="value">Sathyabama Institute of Science and Technology</div></div>
+<div class="info-item"><div class="label">degree</div><div class="value">B.Sc. Data Science</div></div>
+<div class="info-item"><div class="label">location</div><div class="value">Chennai, India</div></div>
+<div class="info-item"><div class="label">email</div><div class="value">baranimoorthy77@gmail.com</div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="skills">
+<div class="container">
+<p class="section-label">Tech Stack</p>
+<h2 class="section-title">Skills &amp; Technologies</h2>
+<div class="status-board">
+<div>
+<p class="status-row-label">ai &amp; machine learning</p>
+<div class="status-tags"><span class="status-tag">Python</span><span class="status-tag">Machine Learning</span><span class="status-tag">Scikit-learn</span><span class="status-tag">Random Forest</span><span class="status-tag">Gradient Boosting</span><span class="status-tag">MediaPipe AI</span><span class="status-tag">Pandas &amp; NumPy</span><span class="status-tag">Data Analysis</span><span class="status-tag">Model Evaluation</span><span class="status-tag">Feature Engineering</span></div>
+</div>
+<div>
+<p class="status-row-label">mobile development</p>
+<div class="status-tags"><span class="status-tag">Android / Kotlin</span><span class="status-tag">Jetpack Compose</span><span class="status-tag">MVVM Architecture</span><span class="status-tag">Hilt / DI</span><span class="status-tag">Flutter / Dart</span><span class="status-tag">CameraX</span><span class="status-tag">FCM Push Notifications</span><span class="status-tag">Lottie Animations</span></div>
+</div>
+<div>
+<p class="status-row-label">backend &amp; full-stack</p>
+<div class="status-tags"><span class="status-tag">FastAPI</span><span class="status-tag">REST API Design</span><span class="status-tag">JWT Auth</span><span class="status-tag">Streamlit</span><span class="status-tag">PostgreSQL</span><span class="status-tag">Supabase</span><span class="status-tag">Firebase RTDB</span><span class="status-tag">Cloud Functions</span><span class="status-tag">Real-Time Sync</span><span class="status-tag">API Security</span></div>
+</div>
+<div>
+<p class="status-row-label">devops &amp; tools</p>
+<div class="status-tags"><span class="status-tag">Git &amp; GitHub</span><span class="status-tag">Firebase Distribution</span><span class="status-tag">Render Cloud Deploy</span><span class="status-tag">Gradle / Build Systems</span><span class="status-tag">Android Studio</span><span class="status-tag">Debugging &amp; Profiling</span><span class="status-tag">Agile / Self-managed</span><span class="status-tag">CI / CD Basics</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="projects">
+<div class="container">
+<p class="section-label">Projects</p>
+<h2 class="section-title">What I've Built</h2>
+<div class="log">
+<div class="log-entry">
+<div class="log-meta"><span class="log-badge">deployed</span><span>render + vercel</span></div>
+<div class="log-head">
+<h3 class="log-title">ShopEase &mdash; AI Refund Processing Agent</h3>
+<div class="log-links">
+<a href="https://web-app-chatbot-ten.vercel.app/" target="_blank">Live Site</a>
+<a href="https://web-app-chatbot.onrender.com" target="_blank">Live API</a>
+<a href="https://github.com/lynxofficial7777-hash/Web-App-Chatbot" target="_blank">GitHub</a>
+</div>
+</div>
+<p class="log-desc">An AI customer-support agent that autonomously handles e-commerce refund requests end-to-end. Built with <strong>LangGraph</strong> for agentic orchestration and <strong>Groq's Llama 3.3 70B</strong> for reasoning, the agent looks up the customer's order, validates it against store policy, and approves or denies the refund &mdash; with live streaming responses and sentiment-aware tone adjustment. Wrapped in a full storefront demo (React) so the agent can be seen operating in a real customer journey: browse, cart, checkout, support chat.</p>
+<div class="log-block">
+<p class="log-block-label">problem solved</p>
+<p>Refund requests are repetitive but policy-sensitive &mdash; a bot that just says "refund approved" to everyone isn't useful, and a bot that can't actually check policy isn't trustworthy. ShopEase's agent uses real tool-calling (lookup, validate, process) so every decision is grounded in actual order data and store rules, not just plausible-sounding text.</p>
+</div>
+<div class="log-block">
+<p class="log-block-label">hard engineering solved</p>
+<ul class="log-fixes">
+<li><span class="dollar">$</span>Fixed the LLM over-triggering refund tools on general policy questions via tightened tool-use guardrails in the system prompt</li>
+<li><span class="dollar">$</span>Found and fixed a frontend regex bug that rendered false "DENIED" decision cards from policy text mentioning the word, not an actual denial</li>
+<li><span class="dollar">$</span>Diagnosed a 401 API error to a revoked Groq key and restored service via key rotation across Render environment variables</li>
+<li><span class="dollar">$</span>Fixed SPA navigation bugs where window.location.href reloads were wiping React cart state on every route change</li>
+</ul>
+</div>
+<div class="log-stack"><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">LangGraph</span><span class="stack-tag">Groq (Llama 3.3 70B)</span><span class="stack-tag">React</span><span class="stack-tag">Vite</span><span class="stack-tag">React Router</span><span class="stack-tag">SSE Streaming</span><span class="stack-tag">Render</span><span class="stack-tag">Vercel</span></div>
+</div>
+<div class="log-entry">
+<div class="log-meta"><span class="log-badge">shipped</span><span>android</span></div>
+<div class="log-head">
+<h3 class="log-title">Active Spark Gen 7 &mdash; AI Fitness Battle App</h3>
+<div class="log-links"><a href="https://github.com/lynxofficial7777-hash/Active-Spark-Gen-Z-" target="_blank">GitHub</a></div>
+</div>
+<p class="log-desc">A real-time AI-powered fitness battle app for kids built entirely in Kotlin. Uses <strong>MediaPipe PoseLandmarker</strong> running at ~30fps on-device to detect body pose and count exercise reps automatically &mdash; no wearable needed, just a phone camera. Kids compete in live multiplayer battles where the opponent's reps sync in real time, or practice solo and earn XP.</p>
+<div class="log-block">
+<p class="log-block-label">problem solved</p>
+<p>Kids often skip exercise because it's boring and solitary. Active Spark turns fitness into a competitive game &mdash; children challenge each other to squat, push-up, and jump battles. The AI camera tracks every rep automatically so there's no cheating and no manual counting. Parents get a dashboard to monitor activity.</p>
+</div>
+<div class="log-block">
+<p class="log-block-label">hard engineering solved</p>
+<ul class="log-fixes">
+<li><span class="dollar">$</span>Fixed bitmap row-stride padding corruption in CameraX RGBA_8888 frames</li>
+<li><span class="dollar">$</span>Fixed camera restarting on every Jetpack Compose recomposition (every rep)</li>
+<li><span class="dollar">$</span>Solved leaderboard race condition using Firebase atomic Cloud Function transactions</li>
+<li><span class="dollar">$</span>Fixed matrix transform order for front-camera mirror (flip before rotate)</li>
+</ul>
+</div>
+<div class="log-stack"><span class="stack-tag">Kotlin</span><span class="stack-tag">Jetpack Compose</span><span class="stack-tag">MediaPipe AI</span><span class="stack-tag">CameraX</span><span class="stack-tag">MVVM + Hilt</span><span class="stack-tag">Firebase RTDB</span><span class="stack-tag">Cloud Functions</span><span class="stack-tag">FCM Push</span><span class="stack-tag">Lottie</span><span class="stack-tag">Android SDK</span></div>
+</div>
+<div class="log-entry">
+<div class="log-meta"><span class="log-badge">deployed</span><span>render</span></div>
+<div class="log-head">
+<h3 class="log-title">AcademyFlow &mdash; AI Student Performance App</h3>
+<div class="log-links">
+<a href="https://academyflow-mobile-app.onrender.com" target="_blank">Live API</a>
+<a href="https://github.com/lynxofficial7777-hash" target="_blank">GitHub</a>
+</div>
+</div>
+<p class="log-desc">A full-stack AI-powered mobile application that predicts student exam scores using machine learning. Students input their study habits and the app returns a predicted score, personalized insights, weekly study roadmap, goal gap analysis, peer comparison, and subject priority recommendations. Built with Flutter for Android, backed by a FastAPI REST API serving a trained ML model deployed on Render cloud with JWT authentication and Supabase PostgreSQL for user data persistence.</p>
+<div class="log-stack"><span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Supabase</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">JWT Auth</span><span class="stack-tag">Render</span><span class="stack-tag">REST API</span></div>
+</div>
+<div class="log-entry">
+<div class="log-meta"><span class="log-badge">deployed</span><span>streamlit cloud</span></div>
+<div class="log-head">
+<h3 class="log-title">AcademyFlow &mdash; Student Performance Predictor (ML Web App)</h3>
+<div class="log-links">
+<a href="https://academyflow.streamlit.app/" target="_blank">Live Demo</a>
+<a href="https://github.com/lynxofficial7777-hash" target="_blank">GitHub</a>
+</div>
+</div>
+<p class="log-desc">A machine learning web application built with Streamlit that predicts student exam performance based on study habits and lifestyle factors. The model was trained on a real student performance dataset using ensemble learning techniques including Random Forest and Gradient Boosting. Features include real-time score prediction, grade classification, and interactive data visualizations.</p>
+<div class="log-stack"><span class="stack-tag">Python</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Pandas</span><span class="stack-tag">NumPy</span><span class="stack-tag">Machine Learning</span><span class="stack-tag">Data Visualization</span><span class="stack-tag">Streamlit Cloud</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="container">
+<p class="section-label">Contact</p>
+<h2 class="section-title">Let's Connect</h2>
+<div class="contact-card">
+<h2>Open to opportunities</h2>
+<p>I'm a fresh graduate actively looking for full-time opportunities in data science, AI/ML engineering, software engineering, and mobile development. Available for immediate joining.</p>
+<div class="contact-links">
+<a href="mailto:baranimoorthy77@gmail.com" class="btn btn-primary">Email me</a>
+<a href="https://www.linkedin.com/in/baranimoorthy77" target="_blank" class="btn btn-outline">LinkedIn</a>
+<a href="https://github.com/lynxofficial7777-hash" target="_blank" class="btn btn-outline">GitHub</a>
+</div>
+</div>
+</div>
+</section>
+<footer><p class="mono">barani.m &mdash; 2026</p></footer>
+</div>
 </body>
 </html>
