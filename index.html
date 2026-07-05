@@ -42,26 +42,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 60px;
-      background: rgba(13,13,13,0.85);
+      padding: 18px clamp(24px, 8vw, 100px);
+      background: rgba(10,10,11,0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--ink-line);
     }
     .nav-logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--red);
-      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--paper);
+      letter-spacing: -0.02em;
     }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       text-decoration: none;
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: var(--paper-dim);
+      font-size: 0.88rem;
       font-weight: 500;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--paper); }
 
     /* ── HERO ── */
     .hero {
