@@ -163,6 +163,10 @@ section { padding: 110px clamp(24px, 8vw, 100px); }
 .project-fixes li::before { content: '—'; position: absolute; left: 0; color: var(--sky-deep); }
 .project-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .stack-pill { font-size: 0.78rem; color: var(--sky-deep); border: 1px solid var(--line-sky); padding: 5px 13px; border-radius: 2px; }
+.project-shots { display: flex; gap: 16px; flex-wrap: wrap; margin: 22px 0; }
+.project-shots img { width: 100%; max-width: 340px; border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(31,53,71,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project-shots img:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(31,53,71,0.18); }
+.project-shots.single img { max-width: 460px; }
 
 /* CONTACT */
 .contact-card {
@@ -308,6 +312,10 @@ footer .serif { color: var(--navy); font-weight: 600; }
           </div>
         </div>
         <p class="project-desc">An AI customer-support agent that autonomously handles e-commerce refund requests end-to-end. Built with <strong>LangGraph</strong> for agentic orchestration and <strong>Groq's Llama 3.3 70B</strong> for reasoning, the agent looks up the customer's order, validates it against store policy, and approves or denies the refund — with live streaming responses and sentiment-aware tone adjustment. Wrapped in a full storefront demo (React) so the agent can be seen operating in a real customer journey: browse, cart, checkout, support chat.</p>
+        <div class="project-shots">
+          <img src="assets/Shopease-store.png" alt="ShopEase storefront">
+          <img src="assets/Shopease-chat1.png" alt="ShopEase AI support chat">
+        </div>
         <div class="project-block">
           <p class="project-block-label">Problem Solved</p>
           <p>Refund requests are repetitive but policy-sensitive — a bot that just says "refund approved" to everyone isn't useful, and a bot that can't actually check policy isn't trustworthy. ShopEase's agent uses real tool-calling (lookup, validate, process) so every decision is grounded in actual order data and store rules, not just plausible-sounding text.</p>
@@ -337,6 +345,9 @@ footer .serif { color: var(--navy); font-weight: 600; }
           </div>
         </div>
         <p class="project-desc">A real-time AI-powered fitness battle app for kids built entirely in Kotlin. Uses <strong>MediaPipe PoseLandmarker</strong> running at ~30fps on-device to detect body pose and count exercise reps automatically — no wearable needed, just a phone camera. Kids compete in live multiplayer battles where the opponent's reps sync in real time, or practice solo and earn XP.</p>
+        <div class="project-shots single">
+          <img src="assets/ActiveSpark.jpeg" alt="Active Spark Gen 7 battle screen">
+        </div>
         <div class="project-block">
           <p class="project-block-label">Problem Solved</p>
           <p>Kids often skip exercise because it's boring and solitary. Active Spark turns fitness into a competitive game — children challenge each other to squat, push-up, and jump battles. The AI camera tracks every rep automatically so there's no cheating and no manual counting. Parents get a dashboard to monitor activity.</p>
@@ -367,6 +378,10 @@ footer .serif { color: var(--navy); font-weight: 600; }
           </div>
         </div>
         <p class="project-desc">A full-stack AI-powered mobile application that predicts student exam scores using machine learning. Students input their study habits and the app returns a predicted score, personalized insights, weekly study roadmap, goal gap analysis, peer comparison, and subject priority recommendations. Built with Flutter for Android, backed by a FastAPI REST API serving a trained ML model deployed on Render cloud with JWT authentication and Supabase PostgreSQL for user data persistence.</p>
+        <div class="project-shots">
+          <img src="assets/Academyflow-mobile1.jpeg" alt="AcademyFlow mobile app roadmap screen">
+          <img src="assets/Academyflow-mobile2.jpeg" alt="AcademyFlow mobile app insights screen">
+        </div>
         <div class="project-stack">
           <span class="stack-pill">Flutter</span><span class="stack-pill">Dart</span><span class="stack-pill">Python</span><span class="stack-pill">FastAPI</span><span class="stack-pill">Scikit-learn</span><span class="stack-pill">Supabase</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">JWT Auth</span><span class="stack-pill">Render</span><span class="stack-pill">REST API</span>
         </div>
@@ -384,6 +399,9 @@ footer .serif { color: var(--navy); font-weight: 600; }
           </div>
         </div>
         <p class="project-desc">A machine learning web application built with Streamlit that predicts student exam performance based on study habits and lifestyle factors. The model was trained on a real student performance dataset using ensemble learning techniques including Random Forest and Gradient Boosting. Features include real-time score prediction, grade classification, and interactive data visualizations.</p>
+        <div class="project-shots single">
+          <img src="assets/AcademyFlow Streamlit Prediction.png" alt="AcademyFlow Streamlit prediction dashboard">
+        </div>
         <div class="project-stack">
           <span class="stack-pill">Python</span><span class="stack-pill">Streamlit</span><span class="stack-pill">Scikit-learn</span><span class="stack-pill">Pandas</span><span class="stack-pill">NumPy</span><span class="stack-pill">Machine Learning</span><span class="stack-pill">Data Visualization</span><span class="stack-pill">Streamlit Cloud</span>
         </div>
@@ -400,6 +418,9 @@ footer .serif { color: var(--navy); font-weight: 600; }
           </div>
         </div>
         <p class="project-desc">An AI-powered code review assistant that uses Retrieval-Augmented Generation to give context-aware feedback on codebases. Built with <strong>LangChain</strong> and <strong>FAISS</strong> for vector search over embedded code chunks (using the all-MiniLM-L6-v2 embedding model), with the <strong>Anthropic Claude API</strong> generating the actual review reasoning and suggestions grounded in the retrieved context rather than guessing blind.</p>
+        <div class="project-shots single">
+          <img src="assets/Codesense.png" alt="CodeSense upload interface">
+        </div>
         <div class="project-stack">
           <span class="stack-pill">Python</span><span class="stack-pill">LangChain</span><span class="stack-pill">FAISS</span><span class="stack-pill">all-MiniLM-L6-v2</span><span class="stack-pill">Anthropic Claude API</span><span class="stack-pill">RAG Pipeline</span><span class="stack-pill">Vector Embeddings</span>
         </div>
